@@ -9,6 +9,7 @@ import { About } from "@/components/site/About";
 import { Testimonials } from "@/components/site/Testimonials";
 import { Contact } from "@/components/site/Contact";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
+import { MobileStickyCTA } from "@/components/site/MobileStickyCTA";
 import { Footer } from "@/components/site/Footer";
 
 export const Route = createFileRoute("/")({
