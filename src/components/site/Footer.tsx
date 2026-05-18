@@ -48,7 +48,7 @@ export function Footer() {
               <li>📞 ফোন: {PHONE_DISPLAY}</li>
               <li>💬 WhatsApp: {WHATSAPP_DISPLAY}</li>
               <li className="break-all">✉️ {EMAIL}</li>
-              <li>📍 তেজগাঁও, ঢাকা-১২১৫</li>
+              <li>📍 ১৪৫, এয়ারপোর্ট রোড সুপার মার্কেট, তেজগাঁও, ঢাকা - ১২১৫</li>
             </ul>
           </div>
         </div>
