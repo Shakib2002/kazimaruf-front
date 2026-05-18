@@ -1,7 +1,7 @@
 import { MessageCircle, CalendarCheck, CheckCircle2 } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/site-data";
-import govtLogo from "@/assets/govt-logo.png";
-import heroWedding from "@/assets/hero-wedding.jpg";
+import govtLogo from "@/assets/govt-logo.webp";
+import heroWedding from "@/assets/hero-wedding.webp";
 
 const BADGES = [
   "সরকার অনুমোদিত",
