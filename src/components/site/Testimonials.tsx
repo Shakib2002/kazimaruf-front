@@ -4,8 +4,6 @@ import Autoplay from "embla-carousel-autoplay";
 import { Quote, Star, MapPin } from "lucide-react";
 import { TESTIMONIALS } from "@/lib/site-data";
 
-import { TESTIMONIALS } from "@/lib/site-data";
-
 export function Testimonials() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "start", slidesToScroll: 1 },
