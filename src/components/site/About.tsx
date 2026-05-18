@@ -1,5 +1,6 @@
 import { ShieldCheck } from "lucide-react";
 import kaziPhoto from "@/assets/kazi-maruf.jpg";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const ACHIEVEMENTS = [
   "২৬ বছরের অভিজ্ঞতা",
@@ -8,12 +9,14 @@ const ACHIEVEMENTS = [
 ];
 
 export function About() {
+  const leftRef = useScrollReveal<HTMLDivElement>();
+  const rightRef = useScrollReveal<HTMLDivElement>();
   return (
     <section id="about" className="relative bg-background py-20 sm:py-28">
       <div className="islamic-pattern absolute inset-0 opacity-30" aria-hidden />
       <div className="relative mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-5 lg:items-center">
         {/* Left: Photo (40%) */}
-        <div className="lg:col-span-2">
+        <div ref={leftRef} className="reveal-up group lg:col-span-2">
           <div className="relative mx-auto w-full max-w-sm">
             {/* Decorative gold corner ornaments */}
             <span className="absolute -left-3 -top-3 h-10 w-10 rounded-tl-2xl border-l-4 border-t-4 border-gold" aria-hidden />
@@ -21,7 +24,7 @@ export function About() {
             <span className="absolute -bottom-3 -left-3 h-10 w-10 rounded-bl-2xl border-b-4 border-l-4 border-gold" aria-hidden />
             <span className="absolute -bottom-3 -right-3 h-10 w-10 rounded-br-2xl border-b-4 border-r-4 border-gold" aria-hidden />
 
-            <div className="relative overflow-hidden rounded-3xl border-4 border-primary bg-card shadow-2xl">
+            <div className="relative overflow-hidden rounded-3xl border-4 border-primary bg-card shadow-2xl transition-transform duration-500 group-hover:-translate-y-1">
               <img
                 src={kaziPhoto}
                 alt="মাওঃ মারুফ খন্দকার — কাজী অফিস ফার্মগেট"
@@ -49,7 +52,7 @@ export function About() {
         </div>
 
         {/* Right: Content (60%) */}
-        <div className="lg:col-span-3">
+        <div ref={rightRef} className="reveal-up lg:col-span-3" style={{ transitionDelay: "120ms" }}>
           <span className="inline-block rounded-full bg-accent/10 px-4 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             আমাদের সম্পর্কে
           </span>

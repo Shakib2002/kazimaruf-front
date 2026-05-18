@@ -95,16 +95,16 @@ export function Hero() {
         >
           <a
             href="#booking"
-            className="inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-gold px-8 text-base font-bold text-primary-darker shadow-2xl shadow-gold/30 transition-transform hover:scale-105"
+            className="glow-pulse inline-flex h-16 items-center justify-center gap-2 rounded-2xl bg-gold px-10 text-lg font-bold text-primary-darker ring-2 ring-gold/40 transition-transform hover:scale-[1.04]"
           >
-            <CalendarCheck className="h-5 w-5" />
+            <CalendarCheck className="h-6 w-6" />
             অ্যাপয়েন্টমেন্ট নিন
           </a>
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border-2 border-white bg-white/5 px-8 text-base font-bold text-white backdrop-blur transition-all hover:scale-105 hover:bg-white hover:text-primary"
+            className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border-2 border-white/70 bg-white/5 px-7 text-base font-semibold text-white backdrop-blur transition-all hover:scale-105 hover:bg-white hover:text-primary"
           >
             <MessageCircle className="h-5 w-5" />
             WhatsApp করুন
