@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { Award, Heart, ShieldCheck, Clock } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
 import { STATS } from "@/lib/site-data";
+import { Reveal } from "./Reveal";
 
 const BN_DIGITS = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
 function toBengali(n: number): string {
   return String(n).replace(/\d/g, (d) => BN_DIGITS[Number(d)]);
 }
-
-const ICONS = [Award, Heart, ShieldCheck, Clock];
 
 function Counter({ target, suffix }: { target: number; suffix: string }) {
   const { ref, inView } = useInView<HTMLDivElement>();
@@ -32,102 +30,47 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
   return (
     <div
       ref={ref}
-      className="text-5xl font-extrabold leading-none text-gold drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] sm:text-6xl"
+      className="font-display text-5xl font-extrabold leading-none tracking-tight text-primary sm:text-6xl"
     >
       {toBengali(value)}
-      <span className="text-gold-soft">{suffix}</span>
+      <span className="text-gold-deep">{suffix}</span>
     </div>
   );
 }
 
 export function Stats() {
   return (
-    <section
-      className="relative overflow-hidden py-16 sm:py-20"
-      style={{
-        background:
-          "linear-gradient(135deg, var(--accent-deep) 0%, var(--accent-darker) 100%)",
-      }}
-    >
-      {/* Diagonal pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.07]"
-        aria-hidden
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, white 0 1px, transparent 1px 22px)",
-        }}
-      />
-      {/* Gold radial glows */}
-      <div
-        className="absolute -left-32 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-gold/20 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="absolute -right-32 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-gold/20 blur-3xl"
-        aria-hidden
-      />
-
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid grid-cols-2 gap-y-10 lg:grid-cols-4">
-          {STATS.map((s, i) => {
-            const Icon = ICONS[i] ?? Award;
-            const isLastCol = (i + 1) % 2 === 0;
-            const isLastColLg = i === STATS.length - 1;
-            return (
-              <div
-                key={s.label}
-                className={[
-                  "group relative flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-1",
-                  !isLastCol ? "border-r border-gold/30" : "",
-                  "lg:border-r lg:border-gold/30",
-                  isLastColLg ? "lg:border-r-0" : "",
-                ].join(" ")}
-              >
-                {/* Gold icon medallion */}
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border-2 border-gold/70 bg-gradient-to-br from-gold/30 to-gold/5 shadow-[0_4px_20px_rgba(212,175,55,0.35)] backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 sm:h-16 sm:w-16">
-                  <Icon className="h-6 w-6 text-gold sm:h-7 sm:w-7" strokeWidth={2.25} />
-                </div>
-
-                <Counter target={s.value} suffix={s.suffix} />
-
-                {/* Gold underline */}
-                <div className="mt-3 h-0.5 w-10 rounded bg-gold/80" />
-
-                <div className="mt-3 text-sm font-semibold tracking-wide text-gold-soft sm:text-base">
-                  {s.label}
-                </div>
+    <section className="relative border-y border-border bg-background py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4 lg:gap-y-0">
+          {STATS.map((s, i) => (
+            <Reveal
+              key={s.label}
+              delay={i * 0.08}
+              className={[
+                "flex flex-col items-center text-center px-4",
+                i % 2 === 1 ? "border-l border-border lg:border-l" : "",
+                "lg:border-l lg:border-border",
+                i === 0 ? "lg:border-l-0" : "",
+              ].join(" ")}
+            >
+              <Counter target={s.value} suffix={s.suffix} />
+              <div className="mt-4 h-px w-8 bg-gold" />
+              <div className="mt-4 text-sm font-semibold text-muted-foreground sm:text-base">
+                {s.label}
               </div>
-            );
-          })}
+            </Reveal>
+          ))}
         </div>
+
+        <Reveal delay={0.4} className="mt-14 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-xs font-display tracking-[0.16em] text-muted-foreground uppercase">
+          <span>সরকার অনুমোদিত</span>
+          <span className="h-1 w-1 rounded-full bg-gold" />
+          <span>কাজী রেজি. নং ২৭ — তেজগাঁও</span>
+          <span className="h-1 w-1 rounded-full bg-gold" />
+          <span>আইন মন্ত্রণালয় নিবন্ধিত</span>
+        </Reveal>
       </div>
-
-      {/* Top wave divider into red */}
-      <svg
-        className="absolute top-0 left-0 h-10 w-full -translate-y-[1px] sm:h-12"
-        viewBox="0 0 1440 60"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <path
-          d="M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,0 L0,0 Z"
-          fill="var(--accent-deep)"
-        />
-      </svg>
-
-      {/* Bottom wave divider into cream */}
-      <svg
-        className="absolute bottom-0 left-0 h-10 w-full translate-y-[1px] sm:h-12"
-        viewBox="0 0 1440 60"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <path
-          d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z"
-          fill="var(--background)"
-        />
-      </svg>
     </section>
   );
 }
