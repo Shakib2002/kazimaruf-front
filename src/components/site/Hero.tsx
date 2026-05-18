@@ -1,6 +1,7 @@
 import { MessageCircle, CalendarCheck, CheckCircle2 } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/site-data";
 import govtLogo from "@/assets/govt-logo.png";
+import heroWedding from "@/assets/hero-wedding.jpg";
 
 const BADGES = [
   "সরকার অনুমোদিত",
@@ -14,17 +15,30 @@ export function Hero() {
       id="home"
       className="relative isolate flex min-h-screen items-center overflow-hidden bg-primary text-primary-foreground"
     >
-      {/* Pattern overlay */}
-      <div className="islamic-pattern-strong absolute inset-0 opacity-[0.08]" aria-hidden />
-      {/* Radial vignette */}
+      {/* Wedding background image */}
+      <img
+        src={heroWedding}
+        alt=""
+        aria-hidden
+        loading="eager"
+        // @ts-expect-error fetchpriority is a valid HTML attr
+        fetchpriority="high"
+        className="absolute inset-0 h-full w-full object-cover opacity-35"
+        style={{ objectPosition: "center 35%" }}
+      />
+      {/* Deep green tint */}
+      <div className="absolute inset-0 bg-primary/75" aria-hidden />
+      {/* Gradient vignette for readability */}
       <div
         className="absolute inset-0"
         aria-hidden
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 0%, color-mix(in oklab, var(--primary-darker) 55%, transparent) 100%)",
+            "linear-gradient(to bottom, color-mix(in oklab, var(--primary-darker) 70%, transparent) 0%, color-mix(in oklab, var(--primary) 50%, transparent) 45%, color-mix(in oklab, var(--primary-darker) 80%, transparent) 100%)",
         }}
       />
+      {/* Pattern overlay */}
+      <div className="islamic-pattern-strong absolute inset-0 opacity-[0.05]" aria-hidden />
       {/* Decorative glows */}
       <div className="absolute -left-32 top-1/4 h-72 w-72 rounded-full bg-accent/30 blur-3xl" aria-hidden />
       <div className="absolute -right-32 bottom-1/4 h-72 w-72 rounded-full bg-gold/30 blur-3xl" aria-hidden />
