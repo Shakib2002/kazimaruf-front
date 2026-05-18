@@ -1,62 +1,48 @@
-import { Shield, HandshakeIcon, ScrollText, Zap } from "lucide-react";
-import { Reveal } from "./Reveal";
-
-const ITEMS = [
-  {
-    icon: Shield,
-    title: "২৬ বছরের নির্ভরযোগ্যতা",
-    desc: "দীর্ঘ অভিজ্ঞতায় ১০,০০০+ পরিবারের আস্থা অর্জন। প্রতিটি কেস ব্যক্তিগত মনোযোগ ও সম্মানের সাথে সম্পন্ন।",
-  },
-  {
-    icon: HandshakeIcon,
-    title: "দালালমুক্ত ও স্বচ্ছ সেবা",
-    desc: "সরাসরি কাজীর সঙ্গে স্বচ্ছ লেনদেন। কোনো হিডেন চার্জ নেই, প্রতিটি ফি অগ্রিম পরিষ্কার।",
-  },
-  {
-    icon: ScrollText,
-    title: "১০০% আইনি ও শরীয়াহ সম্মত",
-    desc: "সরকার অনুমোদিত নিকাহ রেজিস্ট্রার এবং মুসলিম পারিবারিক আইন বিশেষজ্ঞ — উভয় দিকেই পূর্ণ বৈধতা।",
-  },
-  {
-    icon: Zap,
-    title: "জরুরি ও প্রবাসী সেবায় অগ্রাধিকার",
-    desc: "এক দিনে নিকাহনামা, দ্রুত আরবি অনুবাদ ও পররাষ্ট্র মন্ত্রণালয় সত্যায়ন — ২৪/৭ সহযোগিতা।",
-  },
-];
+import { WHY_US } from "@/lib/site-data";
 
 export function WhyUs() {
   return (
-    <section className="relative bg-background py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <section className="relative overflow-hidden bg-primary-dark py-20 text-primary-foreground sm:py-28">
+      <div className="arabic-watermark absolute inset-0 opacity-[0.07]" aria-hidden />
+      <div
+        className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-accent/15 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-gold/15 blur-3xl"
+        aria-hidden
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <Reveal>
-            <span className="eyebrow justify-center">Why Choose Us</span>
-            <h2 className="mt-4 font-bold text-primary-dark">
-              কেন আমাদের বেছে নেবেন?
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-              বিশ্বাস, অভিজ্ঞতা ও আইনি দক্ষতা — তিনটির অপূর্ব সমন্বয়।
-            </p>
-          </Reveal>
+          <span className="inline-block rounded-full border border-gold/40 bg-primary-darker/40 px-4 py-1 text-xs font-bold uppercase tracking-widest text-gold">
+            কেন আমরা
+          </span>
+          <h2 className="gold-underline mt-4 font-bold text-gold">
+            কেন আমাদের বেছে নেবেন?
+          </h2>
+          <p className="mt-6 text-base text-mint">
+            বিশ্বাস, অভিজ্ঞতা ও শরীয়াহ — তিনটির অপূর্ব সমন্বয়।
+          </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2">
-          {ITEMS.map(({ icon: Icon, title, desc }, i) => (
-            <Reveal
-              key={title}
-              delay={(i % 2) * 0.08}
-              className="flex gap-5 bg-card p-8 sm:p-10"
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {WHY_US.map((w) => (
+            <div
+              key={w.title}
+              className="group relative rounded-2xl border border-white/10 bg-primary-darker/50 p-7 backdrop-blur transition-transform hover:-translate-y-1"
+              style={{ borderTop: "3px solid var(--gold)" }}
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/5 ring-1 ring-primary/10">
-                <Icon className="h-5 w-5 text-primary" strokeWidth={2.25} />
-              </span>
-              <div>
-                <h3 className="text-lg font-bold text-primary-dark">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {desc}
-                </p>
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gold text-2xl text-primary-darker shadow-lg">
+                {w.icon}
               </div>
-            </Reveal>
+              <h3 className="mt-5 text-lg font-bold text-white">
+                {w.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-mint">
+                {w.desc}
+              </p>
+            </div>
           ))}
         </div>
       </div>
