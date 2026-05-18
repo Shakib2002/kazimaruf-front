@@ -52,7 +52,7 @@ export function About() {
         </div>
 
         {/* Right: Content (60%) */}
-        <div className="lg:col-span-3">
+        <div ref={rightRef} className="reveal-up lg:col-span-3" style={{ transitionDelay: "120ms" }}>
           <span className="inline-block rounded-full bg-accent/10 px-4 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             আমাদের সম্পর্কে
           </span>
