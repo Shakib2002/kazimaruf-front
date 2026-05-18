@@ -26,24 +26,26 @@ export function Hero() {
         className="absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition: "center 30%" }}
       />
-      {/* Subtle green wash to keep brand tone without hiding photo */}
-      <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" aria-hidden />
-      {/* Gradient vignette: dark top + bottom for text/nav contrast, clear middle */}
+      {/* Green brand wash — multiply keeps photo details visible */}
+      <div className="absolute inset-0 bg-primary/45 mix-blend-multiply" aria-hidden />
+      {/* Secondary deep-green tint for cohesion */}
+      <div className="absolute inset-0 bg-primary-darker/25" aria-hidden />
+      {/* Gradient vignette: dark top + bottom, slight clarity in middle */}
       <div
         className="absolute inset-0"
         aria-hidden
         style={{
           background:
-            "linear-gradient(to bottom, color-mix(in oklab, var(--primary-darker) 80%, transparent) 0%, color-mix(in oklab, var(--primary-darker) 10%, transparent) 35%, color-mix(in oklab, var(--primary-darker) 10%, transparent) 60%, color-mix(in oklab, var(--primary-darker) 85%, transparent) 100%)",
+            "linear-gradient(to bottom, color-mix(in oklab, var(--primary-darker) 85%, transparent) 0%, color-mix(in oklab, var(--primary-darker) 30%, transparent) 35%, color-mix(in oklab, var(--primary-darker) 30%, transparent) 60%, color-mix(in oklab, var(--primary-darker) 90%, transparent) 100%)",
         }}
       />
-      {/* Radial focus to darken behind headline for readability */}
+      {/* Radial focus behind headline */}
       <div
         className="absolute inset-0"
         aria-hidden
         style={{
           background:
-            "radial-gradient(ellipse 60% 45% at 50% 55%, color-mix(in oklab, var(--primary-darker) 55%, transparent) 0%, transparent 100%)",
+            "radial-gradient(ellipse 65% 50% at 50% 55%, color-mix(in oklab, var(--primary-darker) 50%, transparent) 0%, transparent 100%)",
         }}
       />
       {/* Pattern overlay */}
