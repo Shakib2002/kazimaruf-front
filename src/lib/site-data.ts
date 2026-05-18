@@ -5,10 +5,37 @@ import avatarSabrina from "@/assets/avatar-sabrina.jpg";
 import avatarKarim from "@/assets/avatar-karim.jpg";
 import avatarNusrat from "@/assets/avatar-nusrat.jpg";
 
-export const WHATSAPP_URL = "https://wa.me/8801818090938";
+export const WHATSAPP_NUMBER = "8801818090938";
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 export const WHATSAPP_DISPLAY = "01818-090938";
 export const PHONE_DISPLAY = "01757-778186";
 export const EMAIL = "kazipmm@gmail.com";
+
+export function buildWhatsAppUrl(message: string): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+export function buildBookingWhatsAppMessage(input: {
+  name: string;
+  phone: string;
+  service: string;
+  date: string;
+  message?: string;
+}): string {
+  return [
+    "আসসালামু আলাইকুম। আমি অ্যাপয়েন্টমেন্ট নিতে চাই।",
+    "",
+    `নাম: ${input.name}`,
+    `ফোন: ${input.phone}`,
+    `সেবা: ${input.service}`,
+    `পছন্দের তারিখ: ${input.date}`,
+    input.message ? `বার্তা: ${input.message}` : "",
+    "",
+    "ধন্যবাদ।",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
 
 export const NAV_LINKS = [
   { href: "#home", label: "হোম" },
