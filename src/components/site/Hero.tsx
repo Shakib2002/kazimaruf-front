@@ -137,7 +137,7 @@ export function Hero() {
       >
         <path
           d="M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z"
-          fill="var(--accent)"
+          fill="var(--accent-deep)"
         />
       </svg>
     </section>
