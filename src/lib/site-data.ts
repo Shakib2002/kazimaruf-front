@@ -37,6 +37,13 @@ export const STATS = [
   { value: 24, suffix: "/৭", label: "সেবা" },
 ];
 
+import avatarRahim from "@/assets/avatar-rahim.jpg";
+import avatarFarhana from "@/assets/avatar-farhana.jpg";
+import avatarImran from "@/assets/avatar-imran.jpg";
+import avatarSabrina from "@/assets/avatar-sabrina.jpg";
+import avatarKarim from "@/assets/avatar-karim.jpg";
+import avatarNusrat from "@/assets/avatar-nusrat.jpg";
+
 export const TESTIMONIALS = [
   {
     name: "রহিম উদ্দিন",
