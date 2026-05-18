@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-16 md:pb-0">
       <Navbar />
       <main>
         <Hero />
@@ -48,6 +48,7 @@ function Index() {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <MobileStickyCTA />
     </div>
   );
 }
