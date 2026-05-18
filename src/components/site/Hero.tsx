@@ -1,5 +1,6 @@
 import { MessageCircle, CalendarCheck, CheckCircle2 } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/site-data";
+import govtLogo from "@/assets/govt-logo.png";
 
 const BADGES = [
   "সরকার অনুমোদিত",
@@ -31,8 +32,13 @@ export function Hero() {
       <div className="relative mx-auto w-full max-w-6xl px-4 py-24 text-center sm:px-6 sm:py-32">
         {/* Top eyebrow */}
         <div className="fade-up" style={{ animationDelay: "0.05s" }}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-primary-darker/40 px-4 py-1.5 text-sm font-semibold text-gold backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-gold" /> ১৪০০+ বছরের সুন্নাহ • শরীয়াহ সম্মত
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-primary-darker/40 py-1.5 pl-1.5 pr-4 text-sm font-semibold text-gold backdrop-blur">
+            <img
+              src={govtLogo}
+              alt="গণপ্রজাতন্ত্রী বাংলাদেশ সরকার"
+              className="h-7 w-7 rounded-full bg-white object-contain p-0.5"
+            />
+            সরকার অনুমোদিত কাজী অফিস
           </span>
         </div>
 
