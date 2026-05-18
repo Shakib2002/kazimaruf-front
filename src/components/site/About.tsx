@@ -1,5 +1,6 @@
 import { ShieldCheck } from "lucide-react";
 import kaziPhoto from "@/assets/kazi-maruf.jpg";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const ACHIEVEMENTS = [
   "২৬ বছরের অভিজ্ঞতা",
@@ -8,6 +9,8 @@ const ACHIEVEMENTS = [
 ];
 
 export function About() {
+  const leftRef = useScrollReveal<HTMLDivElement>();
+  const rightRef = useScrollReveal<HTMLDivElement>();
   return (
     <section id="about" className="relative bg-background py-20 sm:py-28">
       <div className="islamic-pattern absolute inset-0 opacity-30" aria-hidden />
