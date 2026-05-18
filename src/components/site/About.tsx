@@ -16,7 +16,7 @@ export function About() {
       <div className="islamic-pattern absolute inset-0 opacity-30" aria-hidden />
       <div className="relative mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-5 lg:items-center">
         {/* Left: Photo (40%) */}
-        <div className="lg:col-span-2">
+        <div ref={leftRef} className="reveal-up group lg:col-span-2">
           <div className="relative mx-auto w-full max-w-sm">
             {/* Decorative gold corner ornaments */}
             <span className="absolute -left-3 -top-3 h-10 w-10 rounded-tl-2xl border-l-4 border-t-4 border-gold" aria-hidden />
