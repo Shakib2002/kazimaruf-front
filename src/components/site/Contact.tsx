@@ -96,8 +96,8 @@ export function Contact() {
           style={{ borderTop: "4px solid var(--gold)" }}
         >
           <iframe
-            title="তেজগাঁও, ঢাকা-১২১৫ — কাজী অফিস ফার্মগেট"
-            src="https://www.google.com/maps?q=Tejgaon,+Dhaka+1215,+Bangladesh&output=embed"
+            title="১৪৫, এয়ারপোর্ট রোড সুপার মার্কেট, তেজগাঁও, ঢাকা - ১২১৫ — কাজী অফিস ফার্মগেট"
+            src="https://www.google.com/maps?q=145+Airport+Road+Supermarket,+Tejgaon,+Dhaka+1215,+Bangladesh&output=embed"
             width="100%"
             height="380"
             loading="lazy"
