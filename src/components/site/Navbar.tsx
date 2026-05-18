@@ -25,7 +25,12 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
-        <a href="#home" className="flex items-center gap-2">
+        <a href="#home" className="flex items-center gap-2.5">
+          <img
+            src={brandLogo}
+            alt="কাজী অফিস ফার্মগেট লোগো"
+            className="h-10 w-10 rounded-full object-contain ring-2 ring-gold/40 sm:h-11 sm:w-11"
+          />
           <span className="text-base font-bold leading-tight text-gold sm:text-lg">
             কাজী অফিস ফার্মগেট
           </span>
