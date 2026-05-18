@@ -47,6 +47,7 @@ export const STATS = [
 export const TESTIMONIALS = [
   {
     name: "রহিম উদ্দিন",
+    avatar: avatarRahim,
     location: "ফার্মগেট, ঢাকা",
     service: "সুন্নাহ মোতাবেক বিবাহ",
     year: "২০২৩",
@@ -55,6 +56,7 @@ export const TESTIMONIALS = [
   },
   {
     name: "ফারহানা আক্তার",
+    avatar: avatarFarhana,
     location: "তেজগাঁও",
     service: "কোর্ট ম্যারেজ",
     year: "২০২৪",
@@ -63,6 +65,7 @@ export const TESTIMONIALS = [
   },
   {
     name: "মোঃ ইমরান হোসেন",
+    avatar: avatarImran,
     location: "সংসদ ভবন এলাকা",
     service: "সরকারি রেজিষ্ট্রেশন",
     year: "২০২৪",
@@ -71,6 +74,7 @@ export const TESTIMONIALS = [
   },
   {
     name: "সাবরিনা ইসলাম",
+    avatar: avatarSabrina,
     location: "মোহাম্মদপুর",
     service: "আরবি অনুবাদ ও এপোস্টেল",
     year: "২০২৩",
@@ -79,6 +83,7 @@ export const TESTIMONIALS = [
   },
   {
     name: "আব্দুল করিম",
+    avatar: avatarKarim,
     location: "গ্রিন রোড",
     service: "তালাক পরামর্শ",
     year: "২০২৩",
@@ -87,6 +92,7 @@ export const TESTIMONIALS = [
   },
   {
     name: "নুসরাত জাহান",
+    avatar: avatarNusrat,
     location: "কারওয়ান বাজার",
     service: "সুন্নাহ মোতাবেক বিবাহ",
     year: "২০২৪",
