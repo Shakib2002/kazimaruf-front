@@ -20,7 +20,9 @@ export function Services() {
           {SERVICES.map((s, i) => (
             <article
               key={s.title}
-              className="corner-triangle group relative overflow-hidden rounded-2xl border-l-4 border-primary bg-card p-7 transition-all duration-300 hover:-translate-y-2 hover:border-accent"
+              className={`group relative overflow-hidden rounded-2xl border-l-4 border-primary bg-card p-7 transition-all duration-300 hover:-translate-y-2 hover:border-accent ${
+                i < 3 ? "corner-triangle" : ""
+              }`}
               style={{
                 animationDelay: `${i * 60}ms`,
                 boxShadow: "0 4px 20px color-mix(in oklab, var(--primary) 15%, transparent)",
