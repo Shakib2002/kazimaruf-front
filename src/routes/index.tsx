@@ -9,6 +9,7 @@ import { About } from "@/components/site/About";
 import { Testimonials } from "@/components/site/Testimonials";
 import { Contact } from "@/components/site/Contact";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
+import { MobileStickyCTA } from "@/components/site/MobileStickyCTA";
 import { Footer } from "@/components/site/Footer";
 
 export const Route = createFileRoute("/")({
@@ -33,7 +34,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-16 md:pb-0">
       <Navbar />
       <main>
         <Hero />
@@ -47,6 +48,7 @@ function Index() {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <MobileStickyCTA />
     </div>
   );
 }

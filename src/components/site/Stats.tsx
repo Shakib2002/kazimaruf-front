@@ -11,12 +11,19 @@ function toBengali(n: number): string {
 const ICONS = [Award, Heart, ShieldCheck, Clock];
 
 function Counter({ target, suffix }: { target: number; suffix: string }) {
-  const { ref, inView } = useInView<HTMLDivElement>();
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.05 });
   const [value, setValue] = useState(0);
+  const [started, setStarted] = useState(false);
+
+  // Fallback: if observer hasn't fired within 1.2s of mount, start anyway.
+  useEffect(() => {
+    const t = setTimeout(() => setStarted(true), 1200);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
-    if (!inView) return;
-    const duration = 1600;
+    if (!inView && !started) return;
+    const duration = 1800;
     const start = performance.now();
     let raf = 0;
     const tick = (t: number) => {
@@ -27,7 +34,7 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, target]);
+  }, [inView, started, target]);
 
   return (
     <div
