@@ -58,25 +58,37 @@ export function Booking() {
   }
 
   return (
-    <section id="booking" className="bg-gradient-to-b from-primary/5 to-background py-20 sm:py-24">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6">
+    <section
+      id="booking"
+      className="relative overflow-hidden py-20 sm:py-28"
+      style={{
+        background:
+          "linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%)",
+      }}
+    >
+      <div className="islamic-pattern-strong absolute inset-0 opacity-[0.06]" aria-hidden />
+      <div className="absolute -right-32 top-1/4 h-72 w-72 rounded-full bg-gold/20 blur-3xl" aria-hidden />
+
+      <div className="relative mx-auto max-w-3xl px-4 sm:px-6">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-            অ্যাপয়েন্টমেন্ট <span className="text-primary">বুক করুন</span>
+          <span className="inline-block rounded-full border border-gold/40 bg-primary-darker/40 px-4 py-1 text-xs font-bold uppercase tracking-widest text-gold">
+            অ্যাপয়েন্টমেন্ট
+          </span>
+          <h2 className="gold-underline mt-4 font-bold text-gold">
+            অ্যাপয়েন্টমেন্ট বুক করুন
           </h2>
-          <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-accent" />
-          <p className="mt-4 text-muted-foreground">
+          <p className="mt-6 text-base text-mint">
             ফর্মটি পূরণ করুন — আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।
           </p>
         </div>
 
-        <div className="mt-10 rounded-3xl border border-border bg-card p-6 shadow-xl sm:p-10">
+        <div className="mt-10 rounded-3xl bg-card p-6 shadow-2xl ring-1 ring-gold/30 sm:p-10">
           {submitted ? (
             <div className="py-6 text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/15 text-primary">
                 <CheckCircle2 className="h-9 w-9" />
               </div>
-              <h3 className="mt-5 text-2xl font-bold text-foreground">
+              <h3 className="mt-5 text-2xl font-bold text-primary-dark">
                 ধন্যবাদ! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।
               </h3>
               <p className="mt-3 text-muted-foreground">
@@ -111,9 +123,9 @@ export function Booking() {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>পূর্ণ নাম</FormLabel>
+                      <FormLabel className="font-semibold text-primary-dark">পূর্ণ নাম</FormLabel>
                       <FormControl>
-                        <Input placeholder="আপনার পূর্ণ নাম" {...field} />
+                        <Input placeholder="আপনার পূর্ণ নাম" className="h-11 focus-visible:ring-primary" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -125,9 +137,9 @@ export function Booking() {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>মোবাইল নম্বর</FormLabel>
+                      <FormLabel className="font-semibold text-primary-dark">মোবাইল নম্বর</FormLabel>
                       <FormControl>
-                        <Input type="tel" placeholder="01XXXXXXXXX" {...field} />
+                        <Input type="tel" placeholder="01XXXXXXXXX" className="h-11 focus-visible:ring-primary" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -139,10 +151,10 @@ export function Booking() {
                   name="service"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>সেবার ধরন</FormLabel>
+                      <FormLabel className="font-semibold text-primary-dark">সেবার ধরন</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
-                          <SelectTrigger>
+                          <SelectTrigger className="h-11 focus:ring-primary">
                             <SelectValue placeholder="একটি সেবা নির্বাচন করুন" />
                           </SelectTrigger>
                         </FormControl>
@@ -164,7 +176,7 @@ export function Booking() {
                   name="date"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel>পছন্দের তারিখ</FormLabel>
+                      <FormLabel className="font-semibold text-primary-dark">পছন্দের তারিখ</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -172,7 +184,7 @@ export function Booking() {
                               type="button"
                               variant="outline"
                               className={cn(
-                                "w-full justify-start text-left font-normal",
+                                "h-11 w-full justify-start text-left font-normal",
                                 !field.value && "text-muted-foreground",
                               )}
                             >
@@ -206,11 +218,12 @@ export function Booking() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>বার্তা / অতিরিক্ত তথ্য (ঐচ্ছিক)</FormLabel>
+                      <FormLabel className="font-semibold text-primary-dark">বার্তা (ঐচ্ছিক)</FormLabel>
                       <FormControl>
                         <Textarea
                           rows={4}
                           placeholder="আপনার প্রয়োজন সম্পর্কে সংক্ষেপে লিখুন..."
+                          className="focus-visible:ring-primary"
                           {...field}
                         />
                       </FormControl>
@@ -219,23 +232,23 @@ export function Booking() {
                   )}
                 />
 
-                <Button
+                <button
                   type="submit"
-                  size="lg"
-                  className="h-12 w-full text-base shadow-lg shadow-primary/20"
+                  className="h-14 w-full rounded-xl bg-gold text-base font-bold text-primary-darker shadow-xl shadow-gold/30 transition-transform hover:scale-[1.02]"
                 >
                   অ্যাপয়েন্টমেন্ট নিশ্চিত করুন
-                </Button>
+                </button>
 
                 <p className="text-center text-sm text-muted-foreground">
-                  জরুরি প্রয়োজনে সরাসরি WhatsApp করুন:{" "}
+                  অথবা সরাসরি{" "}
                   <a
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-primary hover:underline"
+                    className="font-bold text-primary hover:underline"
+                    style={{ color: "var(--gold)" }}
                   >
-                    {WHATSAPP_DISPLAY}
+                    WhatsApp করুন →
                   </a>
                 </p>
               </form>

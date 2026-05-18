@@ -1,17 +1,63 @@
+import { NAV_LINKS, PHONE_DISPLAY, WHATSAPP_DISPLAY, EMAIL } from "@/lib/site-data";
+
 export function Footer() {
   return (
-    <footer className="bg-primary-dark text-primary-foreground">
-      <div className="mx-auto max-w-7xl px-4 py-10 text-center sm:px-6">
-        <div className="flex items-center justify-center gap-2 text-lg font-bold">
-          <span aria-hidden>🇧🇩</span>
-          কাজী অফিস ফার্মগেট
+    <footer className="bg-primary-darker text-primary-foreground">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+        <div className="grid gap-10 sm:grid-cols-3">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2 text-2xl font-bold text-gold">
+              <span aria-hidden>🇧🇩</span>
+              কাজী অফিস ফার্মগেট
+            </div>
+            <p className="mt-3 text-sm leading-relaxed text-mint">
+              বিশ্বাস ও অভিজ্ঞতার সাথে আপনার পাশে — দীর্ঘ ২৬ বছর ধরে
+              শরীয়াহ সম্মত সেবা প্রদান করে আসছি।
+            </p>
+            <p className="mt-4 inline-block rounded-full border border-gold/40 bg-primary-dark/60 px-3 py-1 text-xs font-semibold text-gold">
+              গণপ্রজাতন্ত্রী বাংলাদেশ সরকার অনুমোদিত
+            </p>
+          </div>
+
+          {/* Quick links */}
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-gold">
+              দ্রুত লিঙ্ক
+            </h4>
+            <ul className="mt-4 space-y-2 text-sm">
+              {NAV_LINKS.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="text-mint transition-colors hover:text-gold"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-gold">
+              যোগাযোগ
+            </h4>
+            <ul className="mt-4 space-y-2 text-sm text-mint">
+              <li>📞 ফোন: {PHONE_DISPLAY}</li>
+              <li>💬 WhatsApp: {WHATSAPP_DISPLAY}</li>
+              <li className="break-all">✉️ {EMAIL}</li>
+              <li>📍 তেজগাঁও, ঢাকা-১২১৫</li>
+            </ul>
+          </div>
         </div>
-        <p className="mt-3 text-sm opacity-90">
-          কাজী অফিস ফার্মগেট © ২০২৫ | সর্বস্বত্ব সংরক্ষিত
-        </p>
-        <p className="mt-1 text-sm opacity-80">
-          গণপ্রজাতন্ত্রী বাংলাদেশ সরকার অনুমোদিত
-        </p>
+
+        <div className="mt-12 border-t-2 border-accent/70 pt-6 text-center">
+          <p className="text-sm text-mint/80">
+            © ২০২৫ কাজী অফিস ফার্মগেট। সর্বস্বত্ব সংরক্ষিত।
+          </p>
+        </div>
       </div>
     </footer>
   );

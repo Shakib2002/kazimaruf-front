@@ -21,6 +21,7 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-dark: var(--primary-dark);
+  --color-primary-darker: var(--primary-darker);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -34,35 +35,45 @@
   --color-ring: var(--ring);
   --color-whatsapp: var(--whatsapp);
   --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-mint: var(--mint);
 }
 
 :root {
   --radius: 1rem;
   /* Bangladesh flag green #006A4E */
-  --primary: oklch(0.45 0.12 158);
+  --primary: oklch(0.47 0.118 158);
   --primary-foreground: oklch(1 0 0);
-  --primary-dark: oklch(0.36 0.1 158);
-  /* Bangladesh red #C8102E */
-  --accent: oklch(0.56 0.21 25);
+  --primary-dark: oklch(0.36 0.095 158);       /* #004D38 */
+  --primary-darker: oklch(0.25 0.065 158);     /* #002E22 */
+  /* Bold Bangladesh red #F42A41 */
+  --accent: oklch(0.62 0.235 22);
   --accent-foreground: oklch(1 0 0);
+  /* Rich gold #D4AF37 */
+  --gold: oklch(0.78 0.135 85);
+  --gold-soft: oklch(0.88 0.09 88);
+  /* Light mint for text on dark sections */
+  --mint: oklch(0.85 0.06 165);
 
-  --background: oklch(0.995 0.003 90);
-  --foreground: oklch(0.18 0.02 160);
+  /* Cream background #FDF8F0 */
+  --background: oklch(0.985 0.012 85);
+  --foreground: oklch(0.2 0.025 160);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 160);
+  --card-foreground: oklch(0.2 0.025 160);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 160);
-  --secondary: oklch(0.96 0.015 158);
+  --popover-foreground: oklch(0.2 0.025 160);
+  --secondary: oklch(0.94 0.025 90);
   --secondary-foreground: oklch(0.25 0.05 158);
-  --muted: oklch(0.96 0.01 158);
+  --muted: oklch(0.94 0.018 90);
   --muted-foreground: oklch(0.5 0.02 160);
-  --destructive: oklch(0.56 0.21 25);
+  --destructive: oklch(0.62 0.235 22);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0.015 158);
-  --input: oklch(0.9 0.015 158);
-  --ring: oklch(0.45 0.12 158);
+  --border: oklch(0.88 0.02 90);
+  --input: oklch(0.88 0.02 90);
+  --ring: oklch(0.47 0.118 158);
 
-  --whatsapp: oklch(0.62 0.17 145);
+  --whatsapp: oklch(0.7 0.18 145);
   --whatsapp-foreground: oklch(1 0 0);
 }
 
@@ -87,10 +98,14 @@
     font-weight: 700;
     letter-spacing: -0.01em;
   }
+
+  h1 { font-size: clamp(2.25rem, 6vw, 4rem); line-height: 1.1; }
+  h2 { font-size: clamp(1.75rem, 4vw, 2.625rem); line-height: 1.15; }
+  h3 { font-size: 1.5rem; line-height: 1.25; }
 }
 
 @layer utilities {
-  /* Subtle Islamic-inspired geometric pattern using only CSS */
+  /* Islamic-inspired geometric pattern */
   .islamic-pattern {
     background-image:
       radial-gradient(circle at 25% 25%, color-mix(in oklab, var(--primary) 10%, transparent) 0 2px, transparent 3px),
@@ -106,6 +121,26 @@
     background-position: 0 0, 20px 20px, 0 0;
   }
 
+  /* Strong overlay pattern for hero (used over deep green) */
+  .islamic-pattern-strong {
+    background-image:
+      radial-gradient(circle at 50% 50%, color-mix(in oklab, white 25%, transparent) 0 2px, transparent 3px),
+      conic-gradient(from 0deg at 50% 50%,
+        color-mix(in oklab, white 18%, transparent) 0deg 30deg,
+        transparent 30deg 60deg,
+        color-mix(in oklab, var(--gold) 30%, transparent) 60deg 90deg,
+        transparent 90deg 120deg,
+        color-mix(in oklab, white 18%, transparent) 120deg 150deg,
+        transparent 150deg 180deg,
+        color-mix(in oklab, var(--gold) 30%, transparent) 180deg 210deg,
+        transparent 210deg 240deg,
+        color-mix(in oklab, white 18%, transparent) 240deg 270deg,
+        transparent 270deg 300deg,
+        color-mix(in oklab, var(--gold) 30%, transparent) 300deg 330deg,
+        transparent 330deg 360deg);
+    background-size: 60px 60px, 120px 120px;
+  }
+
   .pattern-soft {
     background-image:
       repeating-linear-gradient(45deg,
@@ -114,6 +149,76 @@
       repeating-linear-gradient(-45deg,
         color-mix(in oklab, var(--accent) 4%, transparent) 0 1px,
         transparent 1px 14px);
+  }
+
+  /* Decorative double gold underline under section titles */
+  .gold-underline::after {
+    content: "";
+    display: block;
+    margin: 0.75rem auto 0;
+    width: 6rem;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+    border-radius: 9999px;
+    box-shadow: 0 6px 0 -2px color-mix(in oklab, var(--gold) 50%, transparent);
+  }
+  .gold-underline-left::after {
+    content: "";
+    display: block;
+    margin: 0.75rem 0 0;
+    width: 5rem;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), color-mix(in oklab, var(--gold) 30%, transparent));
+    border-radius: 9999px;
+  }
+
+  /* Fade-up entrance animation */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+
+  /* Shimmer for stat numbers */
+  @keyframes shimmer {
+    0%, 100% { text-shadow: 0 0 0 transparent; }
+    50% { text-shadow: 0 0 24px color-mix(in oklab, var(--gold) 80%, transparent); }
+  }
+  .shimmer { animation: shimmer 3s ease-in-out infinite; }
+
+  /* Wave divider — use as ::after on a relative parent */
+  .wave-bottom-cream::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 60px;
+    background: var(--background);
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'><path d='M0,60 C240,0 480,60 720,30 C960,0 1200,60 1440,20 L1440,60 L0,60 Z' fill='black'/></svg>");
+            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'><path d='M0,60 C240,0 480,60 720,30 C960,0 1200,60 1440,20 L1440,60 L0,60 Z' fill='black'/></svg>");
+    -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+  }
+
+  /* Arabic-style calligraphy watermark (decorative concentric arcs) */
+  .arabic-watermark {
+    background-image:
+      radial-gradient(ellipse 60% 40% at 50% 50%, color-mix(in oklab, var(--gold) 15%, transparent) 0%, transparent 60%),
+      repeating-radial-gradient(circle at 50% 50%,
+        color-mix(in oklab, var(--gold) 8%, transparent) 0 2px,
+        transparent 2px 30px);
+  }
+
+  /* Red corner triangle for service cards */
+  .corner-triangle::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 32px 32px 0;
+    border-color: transparent var(--accent) transparent transparent;
   }
 
   .bn-numerals {
