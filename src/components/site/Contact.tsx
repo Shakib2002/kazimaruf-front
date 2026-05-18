@@ -32,9 +32,8 @@ export function Contact() {
             </div>
             <h3 className="mt-5 text-lg font-bold text-white">ঠিকানা</h3>
             <p className="mt-3 text-sm leading-relaxed text-mint">
-              ১৪৫, এয়ারপোর্ট রোড সুপার মার্কেট, কক্ষ নং-৩৩,<br />
-              আজলাদ হোসেন মার্কেট, তেজগাঁও জামে মসজিদ সংলগ্ন,<br />
-              তেজগাঁও, ঢাকা-১২১৫
+              ১৪৫, এয়ারপোর্ট রোড সুপার মার্কেট,<br />
+              তেজগাঁও, ঢাকা - ১২১৫
             </p>
           </article>
 
