@@ -1,9 +1,13 @@
-import { WHATSAPP_URL } from "@/lib/site-data";
+import { buildWhatsAppUrl } from "@/lib/site-data";
+
+const GREETING_URL = buildWhatsAppUrl(
+  "আসসালামু আলাইকুম। আমি কাজী অফিস ফার্মগেট সম্পর্কে জানতে চাই।",
+);
 
 export function FloatingWhatsApp() {
   return (
     <a
-      href={WHATSAPP_URL}
+      href={GREETING_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp এ যোগাযোগ করুন"

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { format } from "date-fns";
-import { CalendarIcon, CheckCircle2, MessageCircle } from "lucide-react";
+import { CalendarIcon, CheckCircle2, Loader2, MessageCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,7 +26,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
-import { SERVICES, WHATSAPP_URL, WHATSAPP_DISPLAY } from "@/lib/site-data";
+import {
+  SERVICES,
+  WHATSAPP_URL,
+  WHATSAPP_DISPLAY,
+  buildWhatsAppUrl,
+  buildBookingWhatsAppMessage,
+} from "@/lib/site-data";
+import { submitBooking } from "@/lib/booking.functions";
+import { toast } from "sonner";
 
 const schema = z.object({
   name: z
@@ -41,20 +49,57 @@ const schema = z.object({
   service: z.string().min(1, { message: "একটি সেবা নির্বাচন করুন।" }),
   date: z.date({ required_error: "তারিখ নির্বাচন করুন।" }),
   message: z.string().max(1000).optional(),
+  website: z.string().max(0).optional(), // honeypot
 });
 
 type FormValues = z.infer<typeof schema>;
 
 export function Booking() {
   const [submitted, setSubmitted] = useState(false);
+  const [waLink, setWaLink] = useState<string>(WHATSAPP_URL);
+  const [loading, setLoading] = useState(false);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { name: "", phone: "", service: "", message: "" },
+    defaultValues: { name: "", phone: "", service: "", message: "", website: "" },
   });
 
-  function onSubmit(_values: FormValues) {
-    setSubmitted(true);
+  async function onSubmit(values: FormValues) {
+    setLoading(true);
+    try {
+      const dateStr = format(values.date, "yyyy-MM-dd");
+      await submitBooking({
+        data: {
+          name: values.name,
+          phone: values.phone,
+          service: values.service,
+          preferred_date: dateStr,
+          message: values.message || null,
+          website: values.website || null,
+        },
+      });
+
+      const wa = buildWhatsAppUrl(
+        buildBookingWhatsAppMessage({
+          name: values.name,
+          phone: values.phone,
+          service: values.service,
+          date: format(values.date, "PPP"),
+          message: values.message,
+        }),
+      );
+      setWaLink(wa);
+      setSubmitted(true);
+      toast.success("আপনার অ্যাপয়েন্টমেন্ট রিকোয়েস্ট পাঠানো হয়েছে!");
+    } catch (err) {
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "কিছু একটা ভুল হয়েছে। সরাসরি WhatsApp-এ যোগাযোগ করুন।";
+      toast.error(msg);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -92,16 +137,16 @@ export function Booking() {
                 ধন্যবাদ! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।
               </h3>
               <p className="mt-3 text-muted-foreground">
-                জরুরি প্রয়োজনে সরাসরি WhatsApp করুন: {WHATSAPP_DISPLAY}
+                দ্রুত নিশ্চিতকরণের জন্য WhatsApp-এ ও বার্তা পাঠাতে পারেন: {WHATSAPP_DISPLAY}
               </p>
               <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Button
                   asChild
                   className="bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90"
                 >
-                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                  <a href={waLink} target="_blank" rel="noopener noreferrer">
                     <MessageCircle className="h-4 w-4" />
-                    WhatsApp করুন
+                    WhatsApp-এ পাঠান
                   </a>
                 </Button>
                 <Button
@@ -118,6 +163,19 @@ export function Booking() {
           ) : (
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                {/* Honeypot — invisible to humans */}
+                <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
+                  <label>
+                    Website
+                    <input
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      {...form.register("website")}
+                    />
+                  </label>
+                </div>
+
                 <FormField
                   control={form.control}
                   name="name"
@@ -234,9 +292,17 @@ export function Booking() {
 
                 <button
                   type="submit"
-                  className="h-14 w-full rounded-xl bg-gold text-base font-bold text-primary-darker shadow-xl shadow-gold/30 transition-transform hover:scale-[1.02]"
+                  disabled={loading}
+                  className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-gold text-base font-bold text-primary-darker shadow-xl shadow-gold/30 transition-transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
                 >
-                  অ্যাপয়েন্টমেন্ট নিশ্চিত করুন
+                  {loading ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      পাঠানো হচ্ছে...
+                    </>
+                  ) : (
+                    "অ্যাপয়েন্টমেন্ট নিশ্চিত করুন"
+                  )}
                 </button>
 
                 <p className="text-center text-sm text-muted-foreground">
@@ -245,7 +311,7 @@ export function Booking() {
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-bold text-primary hover:underline"
+                    className="font-bold hover:underline"
                     style={{ color: "var(--gold)" }}
                   >
                     WhatsApp করুন →
