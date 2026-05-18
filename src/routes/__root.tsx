@@ -11,21 +11,73 @@ import {
 import appCss from "../styles.css?url";
 import { Toaster } from "@/components/ui/sonner";
 
+const SITE_NAME = "কাজী অফিস ফার্মগেট";
+const SITE_TITLE = "কাজী অফিস ফার্মগেট — বিশ্বস্ত বিবাহ ও তালাক রেজিস্ট্রেশন সেবা";
+const SITE_DESC =
+  "ফার্মগেট, ঢাকায় ২৬ বছরের অভিজ্ঞ ও সরকার-অনুমোদিত কাজী অফিস। সুন্নাহ মোতাবেক বিবাহ, কোর্ট ম্যারেজ, নিকাহনামা, তালাক, আরবি অনুবাদ ও এপোস্টেল সেবা — শতভাগ গোপনীয়তা ও দালাল-মুক্ত।";
+
+const LOCAL_BUSINESS_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  name: SITE_NAME,
+  description: SITE_DESC,
+  image: "/og-image.jpg",
+  telephone: "+8801818090938",
+  priceRange: "৳৳",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "ফার্মগেট",
+    addressLocality: "তেজগাঁও, ঢাকা",
+    addressRegion: "ঢাকা",
+    addressCountry: "BD",
+  },
+  areaServed: { "@type": "City", name: "Dhaka" },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Saturday",
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+      ],
+      opens: "09:00",
+      closes: "21:00",
+    },
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "6",
+  },
+  serviceType: [
+    "সুন্নাহ মোতাবেক বিবাহ",
+    "কোর্ট ম্যারেজ",
+    "সরকারি রেজিষ্ট্রেশন",
+    "নিকাহনামা",
+    "আরবি অনুবাদ ও এপোস্টেল",
+    "তালাক ও বিবাহ বিচ্ছেদ পরামর্শ",
+  ],
+};
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h1 className="text-7xl font-bold text-foreground">৪০৪</h1>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">পেইজটি পাওয়া যায়নি</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          আপনি যে পেইজটি খুঁজছেন সেটি বিদ্যমান নেই বা সরিয়ে নেওয়া হয়েছে।
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            হোমে ফিরুন
           </Link>
         </div>
       </div>
@@ -41,10 +93,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          পেইজটি লোড হয়নি
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          কিছু একটা ভুল হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন অথবা হোমে ফিরে যান।
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -54,13 +106,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Try again
+            আবার চেষ্টা করুন
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            হোমে ফিরুন
           </a>
         </div>
       </div>
@@ -73,19 +125,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESC },
+      { name: "author", content: SITE_NAME },
+      { name: "keywords", content: "কাজী অফিস, ফার্মগেট, বিবাহ রেজিস্ট্রেশন, কোর্ট ম্যারেজ, নিকাহনামা, তালাক, ঢাকা কাজী, kazi office farmgate, marriage registration dhaka" },
+      { property: "og:title", content: SITE_TITLE },
+      { property: "og:description", content: SITE_DESC },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:locale", content: "bn_BD" },
+      { property: "og:image", content: "/og-image.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: SITE_TITLE },
+      { name: "twitter:description", content: SITE_DESC },
+      { name: "twitter:image", content: "/og-image.jpg" },
+      { name: "theme-color", content: "#0f5132" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
+    ],
+    scripts: [
       {
-        rel: "stylesheet",
-        href: appCss,
+        type: "application/ld+json",
+        children: JSON.stringify(LOCAL_BUSINESS_JSONLD),
       },
     ],
   }),
