@@ -41,6 +41,7 @@ function Index() {
         <Services />
         <About />
         <WhyUs />
+        <Testimonials />
         <Booking />
         <Contact />
       </main>
