@@ -1,4 +1,5 @@
 import { NAV_LINKS, PHONE_DISPLAY, WHATSAPP_DISPLAY, EMAIL } from "@/lib/site-data";
+import brandLogo from "@/assets/brand-logo.png";
 
 export function Footer() {
   return (
@@ -7,8 +8,15 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-3">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 text-2xl font-bold text-gold">
-              কাজী অফিস ফার্মগেট
+            <div className="flex items-center gap-3">
+              <img
+                src={brandLogo}
+                alt="কাজী অফিস ফার্মগেট লোগো"
+                className="h-12 w-12 rounded-full object-contain ring-2 ring-gold/40"
+              />
+              <span className="text-2xl font-bold text-gold">
+                কাজী অফিস ফার্মগেট
+              </span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-mint">
               বিশ্বাস ও অভিজ্ঞতার সাথে আপনার পাশে — দীর্ঘ ২৬ বছর ধরে
