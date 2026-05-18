@@ -102,10 +102,10 @@ export function Testimonials() {
                     <img
                       src={t.avatar}
                       alt={t.name}
-                      width={48}
-                      height={48}
+                      width={56}
+                      height={56}
                       loading="lazy"
-                      className="h-12 w-12 shrink-0 rounded-full border-2 border-gold/60 object-cover shadow-md"
+                      className="h-14 w-14 shrink-0 rounded-full border-2 border-gold/60 object-cover shadow-md"
                     />
                     <div className="min-w-0 flex-1">
                       <div className="truncate text-base font-bold text-primary-darker">
