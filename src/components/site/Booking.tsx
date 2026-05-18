@@ -130,10 +130,10 @@ export function Booking() {
         <div className="mt-10 rounded-3xl bg-card p-6 shadow-2xl ring-1 ring-gold/30 sm:p-10">
           {submitted ? (
             <div className="py-6 text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/15 text-primary">
-                <CheckCircle2 className="h-9 w-9" />
+              <div className="pop-in mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/15 text-primary ring-4 ring-primary/10">
+                <CheckCircle2 className="h-12 w-12" />
               </div>
-              <h3 className="mt-5 text-2xl font-bold text-primary-dark">
+              <h3 className="fade-up mt-5 text-2xl font-bold text-primary-dark" style={{ animationDelay: "0.2s" }}>
                 ধন্যবাদ! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।
               </h3>
               <p className="mt-3 text-muted-foreground">
