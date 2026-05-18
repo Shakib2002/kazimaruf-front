@@ -7,7 +7,7 @@ import { TESTIMONIALS } from "@/lib/site-data";
 export function Testimonials() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "start", slidesToScroll: 1 },
-    [Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })],
+    [Autoplay({ delay: 6000, stopOnInteraction: false, stopOnMouseEnter: true })],
   );
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
