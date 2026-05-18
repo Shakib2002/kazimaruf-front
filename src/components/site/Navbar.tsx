@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { NAV_LINKS, WHATSAPP_URL } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
-import brandLogo from "@/assets/brand-logo.png";
+import brandLogo from "@/assets/brand-logo.webp";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
