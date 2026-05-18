@@ -11,6 +11,7 @@ import { Contact } from "@/components/site/Contact";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { MobileStickyCTA } from "@/components/site/MobileStickyCTA";
 import { Footer } from "@/components/site/Footer";
+import heroWedding from "@/assets/hero-wedding.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
