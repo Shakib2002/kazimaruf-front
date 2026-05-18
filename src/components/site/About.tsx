@@ -1,5 +1,5 @@
 import { ShieldCheck } from "lucide-react";
-import kaziPhoto from "@/assets/kazi-maruf.jpg";
+import kaziPhoto from "@/assets/kazi-maruf.webp";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const ACHIEVEMENTS = [

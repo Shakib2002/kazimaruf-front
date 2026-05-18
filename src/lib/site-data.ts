@@ -1,9 +1,9 @@
-import avatarRahim from "@/assets/avatar-rahim.jpg";
-import avatarFarhana from "@/assets/avatar-farhana.jpg";
-import avatarImran from "@/assets/avatar-imran.jpg";
-import avatarSabrina from "@/assets/avatar-sabrina.jpg";
-import avatarKarim from "@/assets/avatar-karim.jpg";
-import avatarNusrat from "@/assets/avatar-nusrat.jpg";
+import avatarRahim from "@/assets/avatar-rahim.webp";
+import avatarFarhana from "@/assets/avatar-farhana.webp";
+import avatarImran from "@/assets/avatar-imran.webp";
+import avatarSabrina from "@/assets/avatar-sabrina.webp";
+import avatarKarim from "@/assets/avatar-karim.webp";
+import avatarNusrat from "@/assets/avatar-nusrat.webp";
 
 export const WHATSAPP_NUMBER = "8801818090938";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
