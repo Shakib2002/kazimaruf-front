@@ -1,21 +1,26 @@
 import { ShieldCheck } from "lucide-react";
 import kaziPhoto from "@/assets/kazi-maruf.jpg";
 
+const ACHIEVEMENTS = [
+  "২৬ বছরের অভিজ্ঞতা",
+  "১০,০০০+ বিবাহ",
+  "শরীয়াহ বিশেষজ্ঞ",
+];
+
 export function About() {
   return (
-    <section id="about" className="py-20 sm:py-24">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-5 lg:items-center">
+    <section id="about" className="relative bg-background py-20 sm:py-28">
+      <div className="islamic-pattern absolute inset-0 opacity-30" aria-hidden />
+      <div className="relative mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-5 lg:items-center">
+        {/* Left: Photo (40%) */}
         <div className="lg:col-span-2">
           <div className="relative mx-auto w-full max-w-sm">
-            <div className="islamic-pattern absolute -inset-3 rounded-[2rem] opacity-40" aria-hidden />
-            <span
-              className="absolute -right-3 -top-3 h-24 w-24 rounded-full bg-accent/30 blur-2xl"
-              aria-hidden
-            />
-            <span
-              className="absolute -bottom-3 -left-3 h-24 w-24 rounded-full bg-primary/30 blur-2xl"
-              aria-hidden
-            />
+            {/* Decorative gold corner ornaments */}
+            <span className="absolute -left-3 -top-3 h-10 w-10 rounded-tl-2xl border-l-4 border-t-4 border-gold" aria-hidden />
+            <span className="absolute -right-3 -top-3 h-10 w-10 rounded-tr-2xl border-r-4 border-t-4 border-gold" aria-hidden />
+            <span className="absolute -bottom-3 -left-3 h-10 w-10 rounded-bl-2xl border-b-4 border-l-4 border-gold" aria-hidden />
+            <span className="absolute -bottom-3 -right-3 h-10 w-10 rounded-br-2xl border-b-4 border-r-4 border-gold" aria-hidden />
+
             <div className="relative overflow-hidden rounded-3xl border-4 border-primary bg-card shadow-2xl">
               <img
                 src={kaziPhoto}
@@ -23,48 +28,58 @@ export function About() {
                 className="aspect-square w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-dark via-primary-dark/85 to-transparent p-5 text-primary-foreground">
-                <div className="flex items-center gap-2 text-xs opacity-90">
-                  <ShieldCheck className="h-4 w-4" />
-                  সরকার অনুমোদিত কাজী
-                </div>
-                <h3 className="mt-1 text-2xl font-bold leading-tight">
-                  মাওঃ মারুফ খন্দকার
-                </h3>
-                <p className="mt-1 text-xs opacity-90">
-                  ঢাকা উত্তর সিটি কর্পোরেশন — ২৭ নং ওয়ার্ড
-                </p>
+            </div>
+
+            {/* Gold name plate */}
+            <div className="relative mx-4 -mt-5 rounded-xl bg-gold px-5 py-3 text-center shadow-xl">
+              <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider text-primary-darker/80">
+                <ShieldCheck className="h-4 w-4" />
+                সরকার অনুমোদিত কাজী
               </div>
+              <div className="mt-1 text-xl font-bold text-primary-darker">
+                মাওঃ মারুফ খন্দকার
+              </div>
+            </div>
+
+            {/* Red designation badge */}
+            <div className="mx-auto mt-3 inline-flex w-full items-center justify-center rounded-full bg-accent px-4 py-2 text-center text-sm font-bold text-white shadow-lg">
+              নিকাহ রেজিস্ট্রার — ২৭ নং ওয়ার্ড
             </div>
           </div>
         </div>
 
+        {/* Right: Content (60%) */}
         <div className="lg:col-span-3">
-          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-            আমাদের <span className="text-primary">সম্পর্কে</span>
+          <span className="inline-block rounded-full bg-accent/10 px-4 py-1 text-xs font-bold uppercase tracking-widest text-accent">
+            আমাদের সম্পর্কে
+          </span>
+          <h2 className="gold-underline-left mt-4 font-bold text-primary-dark">
+            বিশ্বাসের ২৬ বছর, <br />
+            হাজারো পরিবারের পাশে
           </h2>
-          <div className="mt-3 h-1 w-20 rounded-full bg-accent" />
+
           <p className="mt-6 text-lg leading-relaxed text-foreground/85">
             গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের আইন মন্ত্রণালয় কর্তৃক
             অনুমোদিত, ঢাকা উত্তর সিটি কর্পোরেশনের ২৭ নং ওয়ার্ডের
-            দায়িত্বপ্রাপ্ত কাজী। দীর্ঘ ২৬ বছর ধরে ফার্মগেট, রাজাবাজার,
-            মণিপুরী পাড়া, জাতীয় সংসদ এলাকা ও তেজগাঁও অঞ্চলে
-            বিশ্বস্ততার সাথে সেবা প্রদান করে আসছি।
+            দায়িত্বপ্রাপ্ত কাজী।
+          </p>
+          <p className="mt-4 leading-relaxed text-foreground/80">
+            দীর্ঘ ২৬ বছর ধরে ফার্মগেট, রাজাবাজার, মণিপুরী পাড়া,
+            জাতীয় সংসদ এলাকা ও তেজগাঁও অঞ্চলে বিশ্বস্ততার সাথে
+            শরীয়াহ সম্মত বিবাহ, তালাক ও নিকাহনামা সেবা প্রদান করে
+            আসছি — দালালমুক্ত, স্বচ্ছ ও আইনি প্রক্রিয়ায়।
           </p>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-2xl border border-border bg-secondary/60 p-4 text-center">
-              <div className="text-2xl font-bold text-primary">২৬+</div>
-              <div className="mt-1 text-xs text-muted-foreground">বছরের অভিজ্ঞতা</div>
-            </div>
-            <div className="rounded-2xl border border-border bg-secondary/60 p-4 text-center">
-              <div className="text-2xl font-bold text-primary">১০০০+</div>
-              <div className="mt-1 text-xs text-muted-foreground">সন্তুষ্ট পরিবার</div>
-            </div>
-            <div className="rounded-2xl border border-border bg-secondary/60 p-4 text-center">
-              <div className="text-2xl font-bold text-primary">২৪/৭</div>
-              <div className="mt-1 text-xs text-muted-foreground">সেবা প্রদান</div>
-            </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {ACHIEVEMENTS.map((a) => (
+              <span
+                key={a}
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-md"
+              >
+                <span className="h-2 w-2 rounded-full bg-gold" />
+                {a}
+              </span>
+            ))}
           </div>
         </div>
       </div>
