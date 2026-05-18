@@ -7,7 +7,7 @@ export function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp এ যোগাযোগ করুন"
-      className="group fixed bottom-5 right-5 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-2xl shadow-whatsapp/50 transition-transform hover:scale-110 sm:bottom-7 sm:right-7"
+      className="group fixed bottom-20 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-2xl shadow-whatsapp/50 transition-transform hover:scale-110 md:bottom-7 md:right-7 md:h-16 md:w-16"
     >
       <span
         className="absolute inset-0 -z-10 animate-ping rounded-full bg-whatsapp opacity-60"
