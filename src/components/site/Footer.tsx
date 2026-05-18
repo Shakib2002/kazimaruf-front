@@ -1,5 +1,5 @@
 import { NAV_LINKS, PHONE_DISPLAY, WHATSAPP_DISPLAY, EMAIL } from "@/lib/site-data";
-import brandLogo from "@/assets/brand-logo.png";
+import brandLogo from "@/assets/brand-logo.webp";
 
 export function Footer() {
   return (
