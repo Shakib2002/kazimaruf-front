@@ -1,39 +1,90 @@
-## Problem
+## লক্ষ্য
+TanStack Start (SSR + Cloudflare Workers) → plain **Vite + React + React Router v6** SPA-তে convert করব। UI/design হুবহু একই থাকবে। Backend call যাবে external Workers API-তে: `https://kaziofficefarmgate.codewithshakib.workers.dev`। Output হবে static `dist/` — Vercel-এ direct deploy যায়।
 
-`wrangler.jsonc` has a trailing comma after `"main": "src/server.ts",` which causes `ParseError: PropertyNameExpected` in strict JSON parsers (e.g. Cloudflare Pages build).
+---
 
-```jsonc
+## যা মুছে ফেলা হবে (Cloudflare/SSR/Server bits)
+
+- `wrangler.jsonc`
+- `src/server.ts`, `src/start.ts`
+- `src/lib/error-capture.ts`, `src/lib/error-page.ts` (SSR-only)
+- `src/lib/booking.functions.ts` (server function — replace with fetch)
+- `src/integrations/supabase/client.server.ts`
+- `src/integrations/supabase/auth-middleware.ts`
+- `src/integrations/supabase/auth-attacher.ts`
+- `src/routeTree.gen.ts` (TanStack Router generated)
+- `supabase/` folder (যদি শুধু config থাকে এবং user আর Supabase use না করে — কনফার্ম করব)
+- TanStack-specific dependencies: `@tanstack/react-start`, `@tanstack/react-router`, `@tanstack/router-plugin`, `@cloudflare/vite-plugin`, `wrangler`, `@lovable.dev/vite-tanstack-config`
+
+## যা যোগ হবে
+
+- `react-router-dom` (v6)
+- নতুন `vite.config.ts` — শুধু `@vitejs/plugin-react` + `@tailwindcss/vite` + path alias
+- নতুন `src/main.tsx` — root entry, `BrowserRouter` দিয়ে wrap
+- নতুন `src/App.tsx` — `<Routes>` declaration
+- নতুন `index.html` — Vite entry
+- `vercel.json` — SPA fallback rewrite (`/* → /index.html`)
+- `.env.example` — `VITE_API_URL=https://kaziofficefarmgate.codewithshakib.workers.dev`
+- `src/lib/api.ts` — central `fetch` wrapper যেটা `import.meta.env.VITE_API_URL` use করবে
+
+## Route conversion
+
+বর্তমান single-page site (homepage এ সব section), তাই শুধু একটা route থাকবে:
+- `src/routes/index.tsx` → `src/pages/Index.tsx` (logic একই, শুধু `createFileRoute` সরবে)
+- `src/routes/__root.tsx` এর head meta → `index.html` এর `<head>` এ static
+
+কোনো dynamic route নেই তাই migration সহজ।
+
+## Component changes (UI অপরিবর্তিত)
+
+- `Booking.tsx`: `submitBooking` server fn call → `fetch(${VITE_API_URL}/api/bookings, { method: POST, body: JSON })`
+- Navbar/Footer-এ যদি `<Link>` from `@tanstack/react-router` থাকে → `react-router-dom` এর `Link`-এ swap
+- হোম পেজে hash anchor (#services etc.) already use হচ্ছে — কোনো পরিবর্তন লাগবে না
+- সব visual styling, Tailwind classes, design tokens, assets — অপরিবর্তিত
+
+## Supabase সম্পর্কে
+
+`booking.functions.ts` Supabase admin client + Resend দিয়ে DB insert + email পাঠাত। যেহেতু Workers API এসব handle করবে, frontend-এ Supabase client লাগবে না — `src/integrations/supabase/client.ts` ও `types.ts` রাখব শুধু যদি future use থাকে, নয়তো মুছে দিতে পারি (user-এর কাছে জানতে চাইব এ লুপের শেষে নয়, এখনই default: রেখে দেব unused, build break হবে না)।
+
+## Vercel config
+
+`vercel.json`:
+```json
 {
-  "main": "src/server.ts",   // ← trailing comma
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
 ```
 
-## Important context
+`package.json` scripts:
+```json
+"dev": "vite",
+"build": "vite build",
+"preview": "vite preview"
+```
 
-This project is **TanStack Start SSR on Cloudflare Workers** (not Pages). `src/server.ts` is the legitimate Worker entry — it must stay. Removing `wrangler.jsonc` or converting to Pages would break SSR, server functions, and Supabase auth middleware.
+## Verification
 
-## Fix
+- `npm install` clean
+- `npm run build` → `dist/` produces static assets
+- `npm run preview` → site loads, all sections render, booking form posts to Workers API
+- কোনো `process.env`, `createServerFn`, `wrangler` reference নেই
 
-1. **Edit `wrangler.jsonc`** — remove the trailing comma so it parses under strict JSON:
+---
 
-   ```jsonc
-   {
-     "$schema": "node_modules/wrangler/config-schema.json",
-     "name": "tanstack-start-app",
-     "compatibility_date": "2025-09-24",
-     "compatibility_flags": ["nodejs_compat"],
-     "main": "src/server.ts"
-   }
-   ```
+## Workers API contract (assumed)
 
-2. **Scan other JSON files** (`package.json`, `tsconfig.json`, `components.json`, `.lovable/project.json`, `supabase/config.toml` is TOML so skip) for trailing commas and fix any found.
+Booking form POST করবে:
+```
+POST {VITE_API_URL}/api/bookings
+Content-Type: application/json
 
-3. **Do NOT** delete `wrangler.jsonc` or `src/server.ts` — they are required for the Workers SSR runtime this template targets.
+{ "name", "phone", "service", "preferred_date", "message" }
+```
 
-4. **Do NOT** convert to Cloudflare Pages — Pages does not support this template's SSR setup. Deploy with `npx wrangler deploy` (Workers), or use Lovable Publish.
+যদি real endpoint path ভিন্ন হয় (e.g. `/bookings` not `/api/bookings`), implementation-এর সময় code-এ এক জায়গায় বদলালেই হবে।
 
-## What I will NOT do
+---
 
-- Switch to Pages config (would break SSR).
-- Remove the server entry.
-- Touch `src/routeTree.gen.ts` or Supabase client files.
+Approve করলে implement শুরু করব।
