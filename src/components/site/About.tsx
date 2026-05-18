@@ -24,7 +24,7 @@ export function About() {
             <span className="absolute -bottom-3 -left-3 h-10 w-10 rounded-bl-2xl border-b-4 border-l-4 border-gold" aria-hidden />
             <span className="absolute -bottom-3 -right-3 h-10 w-10 rounded-br-2xl border-b-4 border-r-4 border-gold" aria-hidden />
 
-            <div className="relative overflow-hidden rounded-3xl border-4 border-primary bg-card shadow-2xl">
+            <div className="relative overflow-hidden rounded-3xl border-4 border-primary bg-card shadow-2xl transition-transform duration-500 group-hover:-translate-y-1">
               <img
                 src={kaziPhoto}
                 alt="মাওঃ মারুফ খন্দকার — কাজী অফিস ফার্মগেট"
