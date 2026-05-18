@@ -33,7 +33,7 @@ import {
   buildWhatsAppUrl,
   buildBookingWhatsAppMessage,
 } from "@/lib/site-data";
-import { submitBooking } from "@/lib/booking.functions";
+import { submitBooking } from "@/lib/api";
 import { toast } from "sonner";
 
 const schema = z.object({
@@ -69,14 +69,12 @@ export function Booking() {
     try {
       const dateStr = format(values.date, "yyyy-MM-dd");
       await submitBooking({
-        data: {
-          name: values.name,
-          phone: values.phone,
-          service: values.service,
-          preferred_date: dateStr,
-          message: values.message || null,
-          website: values.website || null,
-        },
+        name: values.name,
+        phone: values.phone,
+        service: values.service,
+        preferred_date: dateStr,
+        message: values.message || null,
+        website: values.website || null,
       });
 
       const wa = buildWhatsAppUrl(
