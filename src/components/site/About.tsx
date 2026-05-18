@@ -1,25 +1,41 @@
 import { ShieldCheck } from "lucide-react";
+import kaziPhoto from "@/assets/kazi-maruf.jpg";
 
 export function About() {
   return (
     <section id="about" className="py-20 sm:py-24">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-5 lg:items-center">
         <div className="lg:col-span-2">
-          <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary to-primary-dark p-8 text-primary-foreground shadow-2xl">
-            <div className="islamic-pattern absolute inset-0 opacity-20" aria-hidden />
-            <div className="relative flex h-full flex-col justify-between">
-              <ShieldCheck className="h-12 w-12" />
-              <div>
-                <p className="text-sm opacity-90">সরকার অনুমোদিত কাজী</p>
-                <h3 className="mt-1 text-3xl font-bold leading-tight">
-                  কাজী মারুফ হোসেন
+          <div className="relative mx-auto w-full max-w-sm">
+            <div className="islamic-pattern absolute -inset-3 rounded-[2rem] opacity-40" aria-hidden />
+            <span
+              className="absolute -right-3 -top-3 h-24 w-24 rounded-full bg-accent/30 blur-2xl"
+              aria-hidden
+            />
+            <span
+              className="absolute -bottom-3 -left-3 h-24 w-24 rounded-full bg-primary/30 blur-2xl"
+              aria-hidden
+            />
+            <div className="relative overflow-hidden rounded-3xl border-4 border-primary bg-card shadow-2xl">
+              <img
+                src={kaziPhoto}
+                alt="মাওঃ মারুফ খন্দকার — কাজী অফিস ফার্মগেট"
+                className="aspect-square w-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-dark via-primary-dark/85 to-transparent p-5 text-primary-foreground">
+                <div className="flex items-center gap-2 text-xs opacity-90">
+                  <ShieldCheck className="h-4 w-4" />
+                  সরকার অনুমোদিত কাজী
+                </div>
+                <h3 className="mt-1 text-2xl font-bold leading-tight">
+                  মাওঃ মারুফ খন্দকার
                 </h3>
-                <p className="mt-3 text-sm opacity-90">
+                <p className="mt-1 text-xs opacity-90">
                   ঢাকা উত্তর সিটি কর্পোরেশন — ২৭ নং ওয়ার্ড
                 </p>
               </div>
             </div>
-            <span className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-accent/40 blur-xl" aria-hidden />
           </div>
         </div>
 
