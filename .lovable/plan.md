@@ -1,34 +1,39 @@
-## Deploy Error Fix: Chunk Size Warning
+## Problem
 
-### Problem
-The deployment is failing with a Vite chunk size warning. The default chunk size limit (500 KB) is being exceeded by one or more JavaScript bundles, causing the build to treat the warning as an error.
+`wrangler.jsonc` has a trailing comma after `"main": "src/server.ts",` which causes `ParseError: PropertyNameExpected` in strict JSON parsers (e.g. Cloudflare Pages build).
 
-### Root Cause
-The project imports several sizeable libraries (Recharts, Radix UI primitives, Embla Carousel, date-fns, etc.) which can produce large output chunks during the Vite build step.
-
-### Fix
-Add `build.chunkSizeWarningLimit` to the Vite configuration inside `vite.config.ts` to raise the warning threshold and allow the build to complete.
-
-### Technical Details
-Since this project uses `@lovable.dev/vite-tanstack-config`, the extra Vite options are passed via the `vite` key in `defineConfig`:
-
-```ts
-export default defineConfig({
-  tanstackStart: {
-    server: { entry: "server" },
-  },
-  vite: {
-    build: {
-      chunkSizeWarningLimit: 1000, // 1000 KB = 1 MB
-    },
-  },
-});
+```jsonc
+{
+  "main": "src/server.ts",   // ← trailing comma
+}
 ```
 
-This suppresses the warning without changing the actual chunking behaviour — the app will still be split and deployed normally.
+## Important context
 
-### Files to Change
-- `vite.config.ts` — add the `vite.build.chunkSizeWarningLimit` option.
+This project is **TanStack Start SSR on Cloudflare Workers** (not Pages). `src/server.ts` is the legitimate Worker entry — it must stay. Removing `wrangler.jsonc` or converting to Pages would break SSR, server functions, and Supabase auth middleware.
 
-### Verification
-After the change, run `vite build` to confirm the warning is gone and the build completes successfully.
+## Fix
+
+1. **Edit `wrangler.jsonc`** — remove the trailing comma so it parses under strict JSON:
+
+   ```jsonc
+   {
+     "$schema": "node_modules/wrangler/config-schema.json",
+     "name": "tanstack-start-app",
+     "compatibility_date": "2025-09-24",
+     "compatibility_flags": ["nodejs_compat"],
+     "main": "src/server.ts"
+   }
+   ```
+
+2. **Scan other JSON files** (`package.json`, `tsconfig.json`, `components.json`, `.lovable/project.json`, `supabase/config.toml` is TOML so skip) for trailing commas and fix any found.
+
+3. **Do NOT** delete `wrangler.jsonc` or `src/server.ts` — they are required for the Workers SSR runtime this template targets.
+
+4. **Do NOT** convert to Cloudflare Pages — Pages does not support this template's SSR setup. Deploy with `npx wrangler deploy` (Workers), or use Lovable Publish.
+
+## What I will NOT do
+
+- Switch to Pages config (would break SSR).
+- Remove the server entry.
+- Touch `src/routeTree.gen.ts` or Supabase client files.
