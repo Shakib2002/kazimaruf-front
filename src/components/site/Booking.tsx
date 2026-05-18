@@ -33,7 +33,7 @@ import {
   buildWhatsAppUrl,
   buildBookingWhatsAppMessage,
 } from "@/lib/site-data";
-import { submitBooking } from "@/lib/api";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 const schema = z.object({
@@ -67,15 +67,20 @@ export function Booking() {
   async function onSubmit(values: FormValues) {
     setLoading(true);
     try {
+      // honeypot — silently succeed if bot fills hidden field
+      if (values.website && values.website.length > 0) {
+        throw new Error("Invalid submission.");
+      }
+
       const dateStr = format(values.date, "yyyy-MM-dd");
-      await submitBooking({
+      const { error } = await supabase.from("bookings").insert({
         name: values.name,
         phone: values.phone,
         service: values.service,
         preferred_date: dateStr,
         message: values.message || null,
-        website: values.website || null,
       });
+      if (error) throw error;
 
       const wa = buildWhatsAppUrl(
         buildBookingWhatsAppMessage({
