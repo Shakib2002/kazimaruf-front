@@ -1,3 +1,10 @@
+import avatarRahim from "@/assets/avatar-rahim.jpg";
+import avatarFarhana from "@/assets/avatar-farhana.jpg";
+import avatarImran from "@/assets/avatar-imran.jpg";
+import avatarSabrina from "@/assets/avatar-sabrina.jpg";
+import avatarKarim from "@/assets/avatar-karim.jpg";
+import avatarNusrat from "@/assets/avatar-nusrat.jpg";
+
 export const WHATSAPP_URL = "https://wa.me/8801818090938";
 export const WHATSAPP_DISPLAY = "01818-090938";
 export const PHONE_DISPLAY = "01757-778186";
