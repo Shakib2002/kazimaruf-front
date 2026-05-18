@@ -8,7 +8,6 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 text-2xl font-bold text-gold">
-              <span aria-hidden>🇧🇩</span>
               কাজী অফিস ফার্মগেট
             </div>
             <p className="mt-3 text-sm leading-relaxed text-mint">
