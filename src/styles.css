@@ -183,6 +183,30 @@
     animation: fade-up 0.7s ease-out both;
   }
 
+  /* Scroll reveal (toggled by IntersectionObserver via .is-visible) */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    will-change: opacity, transform;
+  }
+  .reveal-up.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* Glow pulse for primary CTA */
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 10px 30px -5px color-mix(in oklab, var(--gold) 45%, transparent), 0 0 0 0 color-mix(in oklab, var(--gold) 55%, transparent); }
+    50%      { box-shadow: 0 14px 40px -5px color-mix(in oklab, var(--gold) 60%, transparent), 0 0 0 10px color-mix(in oklab, var(--gold) 0%, transparent); }
+  }
+  .glow-pulse { animation: glow-pulse 2.6s ease-in-out infinite; }
+
+  /* Success pop-in (booking confirmation icon) */
+  @keyframes pop-in {
+    0%   { opacity: 0; transform: scale(0.4); }
+    60%  { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  .pop-in { animation: pop-in 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+
   /* Shimmer for stat numbers */
   @keyframes shimmer {
     0%, 100% { text-shadow: 0 0 0 transparent; }
