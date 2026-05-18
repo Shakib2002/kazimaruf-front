@@ -1,62 +1,34 @@
-# Full Design Refinement Plan
+## Deploy Error Fix: Chunk Size Warning
 
-আগের audit-এ পাওয়া ৭টা issue সব fix করব + professional scroll animations যোগ করব।
+### Problem
+The deployment is failing with a Vite chunk size warning. The default chunk size limit (500 KB) is being exceeded by one or more JavaScript bundles, causing the build to treat the warning as an error.
 
-## কী কী fix হবে
+### Root Cause
+The project imports several sizeable libraries (Recharts, Radix UI primitives, Embla Carousel, date-fns, etc.) which can produce large output chunks during the Vite build step.
 
-### 1. Hero Section
-- Primary CTA button বড় ও prominent (glow effect + larger padding)
-- Secondary CTA visually subordinate
-- "সরকার অনুমোদিত" trust badge hero-তে visible করব
-- Hero text-এ subtle fade-in animation
+### Fix
+Add `build.chunkSizeWarningLimit` to the Vite configuration inside `vite.config.ts` to raise the warning threshold and allow the build to complete.
 
-### 2. About Section
-- Image-এ clean rounded frame + soft shadow + gold border accent
-- Background থেকে আলাদা করে pop করানো
+### Technical Details
+Since this project uses `@lovable.dev/vite-tanstack-config`, the extra Vite options are passed via the `vite` key in `defineConfig`:
 
-### 3. Services Section (9 cards)
-- First/featured card-কে highlight (gradient border, larger)
-- Hover-এ icon subtle rotate/scale
-- Cards scroll-এ stagger fade-in (একটার পর একটা)
-
-### 4. Stats Counter
-- Intersection Observer threshold কমিয়ে (0.1) দ্রুত trigger
-- Number animation smooth করব
-
-### 5. Section Transitions
-- সব section-এ scroll-reveal (fade-in + slide-up) যোগ করব
-- Custom hook `useScrollReveal` বানাব (IntersectionObserver based, no extra lib)
-
-### 6. Testimonials
-- Auto-rotating carousel (5s interval, hover-pause)
-- Smooth slide transition
-
-### 7. Booking Form
-- Success state-এ checkmark scale-in animation
-- Submit button-এ loading spinner polish
-
-## Technical approach
-
-```text
-src/
-├── hooks/
-│   └── useScrollReveal.ts          [NEW] IntersectionObserver hook
-├── components/site/
-│   ├── Hero.tsx                    [EDIT] bigger CTA, trust badge, fade-in
-│   ├── About.tsx                   [EDIT] image frame + shadow
-│   ├── Services.tsx                [EDIT] featured card + stagger reveal
-│   ├── Stats.tsx                   [EDIT] threshold fix
-│   ├── Testimonials.tsx            [EDIT] auto-rotate carousel
-│   └── Booking.tsx                 [EDIT] success animation
-└── styles.css                      [EDIT] new keyframes (reveal-up, glow-pulse)
+```ts
+export default defineConfig({
+  tanstackStart: {
+    server: { entry: "server" },
+  },
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 1000, // 1000 KB = 1 MB
+    },
+  },
+});
 ```
 
-- কোনো external library install করব না — pure CSS animations + native IntersectionObserver
-- সব color/shadow design tokens থেকে (`src/styles.css`)
-- Mobile responsive বজায় থাকবে
-- Build break হবে না — incremental edits
+This suppresses the warning without changing the actual chunking behaviour — the app will still be split and deployed normally.
 
-## সময়
-আনুমানিক ৪০-৫০ মিনিট। সব শেষে preview screenshot দিয়ে verify করব।
+### Files to Change
+- `vite.config.ts` — add the `vite.build.chunkSizeWarningLimit` option.
 
-Implement করতে চাইলে "Implement plan" চাপুন।
+### Verification
+After the change, run `vite build` to confirm the warning is gone and the build completes successfully.
