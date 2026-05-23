@@ -73,10 +73,7 @@ export function Hero() {
           style={{ animationDelay: "0.15s" }}
         >
           দীর্ঘ{" "}
-          <span className="relative inline-block">
-            <span className="relative z-10 text-gold">২৬ বছর</span>
-            <span className="absolute -bottom-1 left-0 z-0 h-2.5 w-full rounded bg-accent" />
-          </span>{" "}
+          <span className="text-gold">২৬ বছর</span>{" "}
           এর বিশ্বস্ত কাজী অফিস
         </h1>
 
