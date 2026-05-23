@@ -56,7 +56,7 @@ export function About() {
           <span className="inline-block rounded-full bg-accent/10 px-4 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             আমাদের সম্পর্কে
           </span>
-          <h2 className="gold-underline-left mt-4 font-bold text-primary-dark">
+          <h2 className="mt-4 font-bold text-primary-dark">
             বিশ্বাসের ২৬ বছর, <br />
             হাজারো পরিবারের পাশে
           </h2>
