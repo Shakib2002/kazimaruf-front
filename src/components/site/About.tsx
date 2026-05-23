@@ -41,7 +41,7 @@ export function About() {
 
             {/* Red designation badge */}
             <div className="mx-auto mt-3 inline-flex w-full items-center justify-center rounded-full bg-accent px-4 py-2 text-center text-sm font-bold text-white shadow-lg">
-              নিকাহ রেজিস্ট্রার — ২৭ নং ওয়ার্ড
+              নিকা রেজিস্টার কার্যালয় - ২৭ নং ওয়ার্ড
             </div>
           </div>
         </div>
