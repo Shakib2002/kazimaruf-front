@@ -81,8 +81,7 @@ export function Hero() {
           className="fade-up mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gold-soft sm:text-xl"
           style={{ animationDelay: "0.25s" }}
         >
-          শরীয়াহ সম্মত ও সরকার অনুমোদিত বিবাহ রেজিস্ট্রেশন সেবা —
-          ফার্মগেট, তেজগাঁও ও সংসদ এলাকায়।
+          শরীয়াহ সম্মত ও সরকার অনুমোদিত বিবাহ রেজিস্ট্রেশন সেবা —ফার্মগেট, মণিপুরী পাড়া, আগারগাঁও, জাতীয় সংসদ এলাকা ও তেজগাঁও অঞ্চল ।
         </p>
 
         {/* CTAs */}
