@@ -26,7 +26,7 @@ export function About() {
             <div className="relative overflow-hidden rounded-3xl border-4 border-primary bg-card shadow-2xl transition-transform duration-500 group-hover:-translate-y-1">
               <img
                 src={kaziPhoto}
-                alt="মাওঃ মারুফ খন্দকার — কাজী অফিস ফার্মগেট"
+                alt="মাওলানা মারুফ খন্দকার — কাজী অফিস ফার্মগেট"
                 className="aspect-square w-full object-cover"
                 loading="lazy"
               />
@@ -35,13 +35,13 @@ export function About() {
             {/* Gold name plate */}
             <div className="relative mx-4 -mt-5 rounded-xl bg-gold px-5 py-3 text-center shadow-xl">
               <div className="mt-1 text-xl font-bold text-primary-darker">
-                মাওঃ মারুফ খন্দকার
+                মাওলানা মারুফ খন্দকার
               </div>
             </div>
 
             {/* Red designation badge */}
             <div className="mx-auto mt-3 inline-flex w-full items-center justify-center rounded-full bg-accent px-4 py-2 text-center text-sm font-bold text-white shadow-lg">
-              নিকা রেজিস্টার কার্যালয় - ২৭ নং ওয়ার্ড
+              নিকাহ্ রেজিস্টার কার্যালয় - ২৭ নং ওয়ার্ড
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ export function About() {
           </p>
           <p className="mt-4 leading-relaxed text-foreground/80">
             দীর্ঘ ২৬ বছর ধরে ফার্মগেট, মণিপুরী পাড়া, আগারগাঁও,
-            জাতীয় সংসদ এলাকা ও তেজগাঁও অঞ্চলে বিশ্বস্ততার সাথে
+            শেরেবাংলা নগর দক্ষিণ, জাতীয় সংসদ এলাকা ও তেজগাঁও অঞ্চলে বিশ্বস্ততার সাথে
             শরীয়াহ সম্মত বিবাহ, তালাক ও নিকাহনামা সেবা প্রদান করে
             আসছি — দালালমুক্ত, স্বচ্ছ ও আইনি প্রক্রিয়ায়।
           </p>
