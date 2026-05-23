@@ -1,4 +1,3 @@
-import { ShieldCheck } from "lucide-react";
 import kaziPhoto from "@/assets/kazi-maruf.webp";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
@@ -35,10 +34,6 @@ export function About() {
 
             {/* Gold name plate */}
             <div className="relative mx-4 -mt-5 rounded-xl bg-gold px-5 py-3 text-center shadow-xl">
-              <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider text-primary-darker/80">
-                <ShieldCheck className="h-4 w-4" />
-                সরকার অনুমোদিত কাজী
-              </div>
               <div className="mt-1 text-xl font-bold text-primary-darker">
                 মাওঃ মারুফ খন্দকার
               </div>
