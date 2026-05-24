@@ -2,12 +2,18 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 export default function NotFound() {
+  const url =
+    typeof window !== "undefined"
+      ? window.location.origin + window.location.pathname
+      : "";
   return (
     <>
       <Helmet>
         <title>পেইজটি পাওয়া যায়নি (৪০৪) | কাজী অফিস ফার্মগেট</title>
         <meta name="description" content="আপনি যে পেইজটি খুঁজছেন সেটি বিদ্যমান নেই বা সরিয়ে নেওয়া হয়েছে। কাজী অফিস ফার্মগেটের হোমে ফিরে যান।" />
         <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={url} />
+        <meta property="og:url" content={url} />
         <meta property="og:title" content="পেইজটি পাওয়া যায়নি (৪০৪) | কাজী অফিস ফার্মগেট" />
         <meta property="og:description" content="আপনি যে পেইজটি খুঁজছেন সেটি বিদ্যমান নেই।" />
         <meta name="twitter:title" content="পেইজটি পাওয়া যায়নি (৪০৪) | কাজী অফিস ফার্মগেট" />
