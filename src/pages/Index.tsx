@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { Stats } from "@/components/site/Stats";
@@ -26,8 +27,14 @@ export default function Index() {
     };
   }, []);
 
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+
   return (
     <div className="min-h-screen bg-background pb-16 md:pb-0">
+      <Helmet>
+        <link rel="canonical" href={`${origin}/`} />
+        <meta property="og:url" content={`${origin}/`} />
+      </Helmet>
       <Navbar />
       <main>
         <Hero />
