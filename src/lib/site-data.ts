@@ -41,9 +41,11 @@ export const NAV_LINKS = [
   { href: "#home", label: "হোম" },
   { href: "#services", label: "সেবাসমূহ" },
   { href: "#about", label: "আমাদের সম্পর্কে" },
+  { href: "#faq", label: "জিজ্ঞাসা" },
   { href: "#booking", label: "অ্যাপয়েন্টমেন্ট" },
   { href: "#contact", label: "যোগাযোগ" },
 ];
+
 
 export const SERVICES = [
   { icon: "💍", title: "সুন্নাহ মোতাবেক বিবাহ", desc: "ইসলামী শরীয়াহ অনুসারে পূর্ণাঙ্গ ও বরকতময় বিবাহ অনুষ্ঠান।" },

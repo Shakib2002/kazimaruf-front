@@ -1,6 +1,43 @@
+# https://www.robotstxt.org/robotstxt.html
+
+# Allow all crawlers
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /_admin
 
-Sitemap: /sitemap.xml
+# Explicitly allow AI search engine crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Reddit crawler
+User-agent: RedditBot
+Allow: /
+
+# Sitemap (absolute URL required)
+Sitemap: https://farmgatekazioffice.com/sitemap.xml
+
+# AI/LLM context files
+# llms.txt: https://farmgatekazioffice.com/llms.txt
+# llms-full.txt: https://farmgatekazioffice.com/llms-full.txt

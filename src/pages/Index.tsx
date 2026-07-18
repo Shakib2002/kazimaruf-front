@@ -8,6 +8,7 @@ import { WhyUs } from "@/components/site/WhyUs";
 import { Booking } from "@/components/site/Booking";
 import { About } from "@/components/site/About";
 import { Testimonials } from "@/components/site/Testimonials";
+import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { MobileStickyCTA } from "@/components/site/MobileStickyCTA";
@@ -43,6 +44,7 @@ export default function Index() {
         <About />
         <WhyUs />
         <Testimonials />
+        <FAQ />
         <Booking />
         <Contact />
       </main>
